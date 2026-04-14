@@ -174,32 +174,87 @@ def inject_css():
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-    html,body,[class*="css"]{font-family:'Inter',sans-serif!important;}
+    /* ===== GLOBAL ===== */
+    html,body,[class*="css"]{font-family:'Inter',sans-serif!important;background:#f8fafc;}
     #MainMenu,header,footer{visibility:hidden;}
     .block-container{padding-top:1.5rem!important;padding-bottom:1.5rem!important;max-width:1600px;}
-    [data-testid="stSidebar"]{background:linear-gradient(160deg,#1e1b4b 0%,#0f172a 100%)!important;border-right:none;}
-    [data-testid="stSidebar"] *{color:#e0e7ff!important;}
-    .stRadio>div[role="radiogroup"]>label{padding:10px 14px;margin-bottom:5px;border-radius:10px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.04);transition:all .2s;cursor:pointer;}
-    .stRadio>div[role="radiogroup"]>label:hover{background:rgba(99,102,241,.3);border-color:#6366f1;}
-    .kpi-card{background:#ffffff;border-radius:16px;padding:22px 24px;border:1px solid #f1f5f9;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;margin-bottom:16px;}
-    .kpi-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(99,102,241,.12);}
-    .kpi-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px;}
-    .kpi-value{font-size:2.1rem;font-weight:800;color:#1e1b4b;line-height:1;}
-    .kpi-sub{font-size:.8rem;font-weight:600;margin-top:8px;}
+
+    /* ===== SIDEBAR — Next.js Vercel dark nav style ===== */
+    [data-testid="stSidebar"]{
+        background:#111827!important;
+        border-right:1px solid rgba(255,255,255,0.08)!important;
+    }
+    /* Force ALL sidebar text to white */
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] div,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] li,
+    [data-testid="stSidebar"] .stSelectbox span {
+        color:#f1f5f9 !important;
+    }
+    /* Selectbox & multiselect in sidebar */
+    [data-testid="stSidebar"] .stSelectbox > div > div,
+    [data-testid="stSidebar"] .stMultiSelect > div > div {
+        background:#1f2937 !important;
+        border:1px solid #374151 !important;
+        color:#f1f5f9 !important;
+        border-radius:8px;
+    }
+    [data-testid="stSidebar"] .stButton > button {
+        background:#4f46e5;
+        color:#fff !important;
+        border:none;
+        border-radius:8px;
+        font-weight:600;
+        transition:background .2s;
+    }
+    [data-testid="stSidebar"] .stButton > button:hover{background:#4338ca;}
+
+    /* ===== KPI CARDS — Next.js style ===== */
+    .kpi-card{
+        background:#ffffff;
+        border-radius:12px;
+        padding:20px 22px;
+        border:1px solid #e2e8f0;
+        box-shadow:0 1px 2px rgba(0,0,0,.05);
+        transition:box-shadow .2s,transform .2s;
+        margin-bottom:16px;
+    }
+    .kpi-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(79,70,229,.10);}
+    .kpi-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:6px;}
+    .kpi-value{font-size:2rem;font-weight:800;color:#0f172a;line-height:1;}
+    .kpi-sub{font-size:.78rem;font-weight:600;margin-top:6px;}
     .kpi-pos{color:#0d9488;} .kpi-neg{color:#dc2626;}
-    .kanban-col{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:20px;min-height:280px;}
-    .kanban-header{font-weight:700;font-size:1rem;color:#1e1b4b;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid #6366f1;}
+
+    /* ===== KANBAN ===== */
+    .kanban-col{
+        background:#ffffff;
+        border:1px solid #e2e8f0;
+        border-radius:12px;
+        padding:18px;
+        min-height:260px;
+        box-shadow:0 1px 3px rgba(0,0,0,.04);
+    }
+    .kanban-header{font-weight:700;font-size:.95rem;color:#0f172a;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid #6366f1;}
+
+    /* ===== SECTION TITLE ===== */
+    .section-title{font-size:1.1rem;font-weight:700;color:#0f172a;margin-bottom:12px;margin-top:4px;letter-spacing:-.01em;}
+
+    /* ===== LIVE DOT ===== */
     @keyframes livepulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-    .live-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#dc2626;margin-right:8px;animation:livepulse 1.5s infinite;vertical-align:middle;}
-    .alert-row{padding:8px 12px;border-radius:8px;margin-bottom:6px;font-size:.85rem;display:flex;justify-content:space-between;}
+    .live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#ef4444;margin-right:8px;animation:livepulse 1.5s infinite;vertical-align:middle;}
+
+    /* ===== ALERT ROWS ===== */
+    .alert-row{padding:8px 12px;border-radius:8px;margin-bottom:6px;font-size:.83rem;display:flex;justify-content:space-between;}
     .alert-danger{background:#fef2f2;border-left:3px solid #dc2626;color:#991b1b;}
     .alert-warn{background:#fffbeb;border-left:3px solid #f59e0b;color:#92400e;}
     .alert-ok{background:#f0fdf4;border-left:3px solid #16a34a;color:#14532d;}
-    .section-title{font-size:1.3rem;font-weight:700;color:#1e1b4b;margin-bottom:12px;margin-top:4px;}
-    /* Placeholder styling */
-    /* Placeholder styling - made black for visibility */
-    ::placeholder {color:#000000!important; opacity:1!important;}
-    input::placeholder {color:#000000!important;}
+
+    /* ===== PLACEHOLDER — readable grey (not black to avoid confusion) ===== */
+    ::placeholder{color:#9ca3af !important;opacity:1 !important;}
+    /* Login page background */
+    .login-bg{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);min-height:100vh;}
     </style>
     """)
 
@@ -246,10 +301,10 @@ def login():
         </div>
         """, unsafe_allow_html=True)
         
-        with st.form("auth", border=True):
-            st.markdown("<div style='text-align:center;font-size:1rem;color:#334155;font-weight:600;margin-bottom:16px;'>Sign In</div>", unsafe_allow_html=True)
+        with st.form("auth", border=False):
+            st.markdown("<div style='text-align:center;font-size:.95rem;color:#64748b;font-weight:500;margin-bottom:20px;'>Sign in to your account</div>", unsafe_allow_html=True)
             u = st.text_input("Username", placeholder="admin")
-            p = st.text_input("Password", type="password", placeholder="••••••••")
+            p = st.text_input("Password", type="password")
             btn = st.form_submit_button("Access Dashboard", use_container_width=True)
             if btn:
                 u_clean = u.strip()
