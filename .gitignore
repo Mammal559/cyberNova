@@ -1,0 +1,22 @@
+# Streamlit
+.streamlit/
+scripts/
+!scripts/workflows/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Data (Keep the logic, but usually ignore large raw CSVs)
+# However, the user wants the enriched data and users.json
+# I will only ignore the large raw source if it is huge, 
+# but for now I will keep it simple.
+data/sessions/
+data/analytics_cache/
+data/reports/*.pdf
+data/reports/*.xlsx
+data/audit_logs/*.log
